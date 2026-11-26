@@ -84,8 +84,7 @@ export default function App() {
     }
     const rows = products.map((p, i) => `${i + 1}. ${p.name} (${t.categories[Number(p.category)]})\n   ${lang === 'en' ? 'Description' : 'Maelezo'}: ${p.description || (lang === 'en' ? 'No extra details' : 'Hakuna maelezo ya ziada')}\n   ${t.quantity}: ${p.quantity}`)
     const message = `${lang === 'en' ? 'SHOPPING ORDER' : 'ODA YA MANUNUZI'} · Dydah Personal Shopper\n\n${t.customerName}: ${customer.name}\n${t.customerPhone}: ${customer.phone}\n${t.location}: ${customer.location}\n${t.budget}: ${customer.budget ? `TZS ${customer.budget}` : (lang === 'en' ? 'Not specified' : 'Haijatajwa')}\n\n${lang === 'en' ? 'PRODUCTS' : 'BIDHAA'}\n${rows.join('\n\n')}\n\n${t.instructions}: ${customer.instructions || (lang === 'en' ? 'None' : 'Hakuna')}\n\n${lang === 'en' ? 'Please confirm product availability and the estimated total before purchasing. Thank you.' : 'Tafadhali thibitisha upatikanaji na makadirio ya jumla kabla ya kununua. Asante.'}`
-    const messageToSend = referenceImage ? `${message}\n\n${t.attachImage} (${referenceImage.file.name})` : message
-    openWhatsApp(messageToSend)
+    openWhatsApp(message)
     setFeedback(referenceImage ? t.attachImage : (lang === 'en' ? 'Your order is ready in WhatsApp. Review it and press Send to complete your request.' : 'Oda yako iko tayari WhatsApp. Ikague kisha bonyeza Tuma kukamilisha ombi.'))
   }
   const submitContact = (event: FormEvent<HTMLFormElement>) => {
